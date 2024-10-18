@@ -34,6 +34,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public boolean deleteAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int deletedRows = db.delete(TABLE_NAME, null, null);  // Hapus semua baris
+        return deletedRows > 0;  // Mengembalikan true jika ada data yang dihapus
+    }
+
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
